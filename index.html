@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+	<title>Hex clock</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html, body {
+			height: 100%;
+		}
+		#hex {
+			color: #ffffff;
+			font: 64px/64px Lato;
+			height: 64px;
+			position: relative;
+			top: 50%;
+			margin-top: -32px;
+			text-align: center;
+		}
+	</style>
+	<!-- Idea and code from http://www.jacopocolo.com/hexclock/ -->
+</head>
+
+<body>
+	<div id="hex">
+	</div>
+</body>
+<script>
+	//Display current time
+	var d, h, m, s, color;
+	function displayTime() {
+		d = new Date(); //new date object
+		h = d.getHours();
+		m = d.getMinutes();
+		s = d.getSeconds();
+
+		//Add a zero to the left of the numbers if they are single digits
+		if(h <= 9) h = "0"+h;
+		if(m <= 9) m = "0"+m;
+		if(s <= 9) s = "0"+s;
+
+		color = "#"+h+m+s;
+
+		// set background color
+		document.body.style.background = color;
+
+		//set time
+		document.getElementById("hex").innerHTML = color;
+
+		//retrigger the function every second
+
+		setTimeout(displayTime, 1000);
+ 	}
+
+ 	//call the function
+ 	displayTime();
+</script>
